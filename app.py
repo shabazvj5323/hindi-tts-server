@@ -7,6 +7,10 @@ app = Flask(__name__)
 AUDIO_DIR = '/tmp/audio'
 os.makedirs(AUDIO_DIR, exist_ok=True)
 
+@app.route('/health', methods=['GET'])
+def health():
+    return jsonify({"status": "ok"})
+
 @app.route('/tts', methods=['POST'])
 def tts():
     text = request.json.get('text', '')
